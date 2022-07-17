@@ -79,12 +79,18 @@ type toRequired<obj extends Object> = {
  */
 
 type OneToReadonly<obj extends Object,keyName extends string> = {
-    readonly [key in keyof obj as key extends keyName?readonly key:key]:obj[key]
+    readonly [key in keyof obj as key extends keyName?key:never]:obj[key]
 }
+type OtherToOther<obj extends Object, keyName extends string> = {
+    [key in keyof obj as key extends keyName ? never : key]: obj[key];
+};
 
-const p5:OneToReadonly<person,'name'> = {
 
-}
+const p5: OneToReadonly<person, "name"> & OtherToOther<person, "name"> = {
+    name:'zwf',
+    age:18,
+    sex:true
+};
 
 /**
  * 根据索引值类型做过滤
