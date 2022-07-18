@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  </style>
+</head>
+<body>
+  <div class="outer">
+    <div class="mid">
+      <h1>输入！会反转</h1>
+      <input type="text" id="test1">
+      <button onclick="trytry()">点击一下试试</button>
+      <script>
+        const input = document.getElementById('test1')
+        function trytry(){
+          let val = input.value
+          val = String(val)
+          if(val[0]==='!'){
+            val = val.split('').reverse().join('')
+            alert(val)
+          }else{
+            alert(val)
+          }
+        }
+      </script>
+    </div>
+  </div>
+</body>
+</html>
