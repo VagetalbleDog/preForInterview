@@ -1,3 +1,4 @@
+
 function red() {
   console.log('red')
 }
@@ -9,49 +10,48 @@ function yellow() {
 }
 
 //用callback实现,不断的回调
-const taskCallback = function (timer, light, callback) {
+const callbackTask = (timer, light, callback) => {
   setTimeout(() => {
-    if (light === 'red') {
-      red()
-    } else if (light === 'yellow') {
-      yellow()
-    } else if (light === 'green') {
-      green()
+    switch (light) {
+      case 'red':
+        red();
+        break;
+      case 'yellow':
+        yellow();
+        break;
+      case 'green':
+        green();
+        break
     }
-    callback()
+    callback();
   }, timer)
 }
-
-const stepCallback = function () {
-  taskCallback(3000, 'red', () => {
-    taskCallback(2000, 'yellow', () => {
-      taskCallback(1000, 'green', () => {
-        stepCallback()
-      })
-    })
-  })
+const doCallBack = () => {
+  callbackTask(1000, 'green', () => { callbackTask(2000, 'yellow', () => { callbackTask(3000, 'red', doCallBack) }) })
 }
 
-//用promise实现
-const taskPromise = function (timer, light) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (light === 'red') {
-        red()
-      } else if (light === 'green') {
-        green()
-      } else if (light === 'yellow') {
-        yellow()
+const taskPromise = (timer,light)=>{
+  return new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      switch (light) {
+        case 'red':
+          red();
+          break;
+        case 'yellow':
+          yellow();
+          break;
+        case 'green':
+          green();
+          break
       }
       resolve()
-    }, timer)
+    },timer)
   })
 }
-
-const stepPromise = function () {
-  taskPromise(3000, 'red').then(() => {
-    taskPromise(2000, 'yellow').then(() => {
-      taskPromise(1000, 'green').then(stepCallback)
+const doPromise = ()=>{
+  taskPromise(1000,'green').then(()=>{
+    taskPromise(2000,'yellow').then(()=>{
+      taskPromise(3000,'red').then(doPromise)
     })
   })
 }
@@ -77,4 +77,3 @@ const asyncTask = async () => {
   await lighter(1000, 'green')
   asyncTask()
 }
-asyncTask()

@@ -1,25 +1,21 @@
 let arr = [1, [2, [3, [4, 5]]]]
 //方法一、递归
-function flatten(arr) {
-  let newArr = []
-  for (val of arr) {
-    if (Array.isArray(val)) {
-      newArr = newArr.concat(flatten(val))
-    } else {
-      newArr.push(val)
+const flatten = (arr)=>{
+  if(!Array.isArray(arr)){
+    return;
+  }
+  let resArr = [];
+  for(let key of arr){
+    if(Array.isArray(key)){
+      resArr = resArr.concat(flatten(key))
+    }else{
+      resArr.push(key)
     }
   }
-  return newArr
-}
-//方法二 ToString()+split()+map()
-function flatten2(arr) {
-  let newArr = arr
-    .toString()
-    .split(',')
-    .map((val) => {
-      return parseInt(val)
-    })
-  return newArr
+  return resArr;
 }
 
+const flatten2 = (arr)=>{
+  return arr.toString().split(',').map(i=>Number(i))
+}
 console.log(flatten2(arr))

@@ -4,29 +4,23 @@ function deepClone_JsonType(obj) {
   return JSON.parse(temp)
 }
 
-function deepCopy(obj) {
-  if (!obj || typeof obj !== 'object') {
-    throw new TypeError(`${obj} is not a object`)
+//方法2 递归
+const deepCopy = (obj)=>{
+  if(typeof obj!=='object'){
+    return;
   }
-  let map = new Map()
-  function deep(obj, map) {
-    if (map.get(obj)) {
-      return map.get(obj)
-    }
-    let newObj = Array.isArray(obj) ? [] : {}
-    map.set(obj, newObj)
-    for (let key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        if (typeof obj[key] === 'object') {
-          newObj[key] = deep(obj[key], map)
-        } else {
-          newObj[key] = obj[key]
-        }
+  const map = new Map();
+  const deep = (obj)=>{
+    const newObj = Array.isArray(obj)?[]:{};
+    map.set(obj,newObj)
+    for(const key in obj){
+      if(obj.hasOwnProperty(key)){
+        newObj[key]=typeof obj[key]==='object'?deep(obj[key]):obj[key]
       }
     }
     return newObj
   }
-  return deep(obj, map)
+  return deep(obj)
 }
 //测试
 let obj1 = {
@@ -35,5 +29,6 @@ let obj1 = {
   d: [1, 2, 3, { e: { f: 5 } }],
 }
 let obj2 = deepCopy(obj1)
+obj2.d[3].e.f=6
 console.log(obj2)
-console.log(obj1.d[3].e.f)
+console.log(obj2.d[3].e.f)
