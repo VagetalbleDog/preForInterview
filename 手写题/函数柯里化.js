@@ -23,4 +23,4 @@ function sum(...args) {
 }
 // console.log(curry(sum, 1)(2, 3))
 let curry_sum = curry(sum)
-console.log(curry_sum(1)(2, 3, 4)(5)())
+console.log(curry_sum(1)(2, 3, 4))

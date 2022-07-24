@@ -1,3 +1,5 @@
+type CamelCase<str extends string> = str extends `${infer first}_${infer last}${infer suffix}` ? CamelCase<`${first}${Uppercase<last>}${suffix}`> : str;
+
 //当类型参数为联合类型，并在条件类型左边直接引用 这个联合类型时，TS会把每一个元素都单独传入做类型运算，最后再合并成联合类型，这就叫分布式条件类型
 
 type abc = "a" | "b" | "c";
@@ -44,4 +46,4 @@ type Combinations<A extends string, B extends string> = `${A}` | `${B}` | `${A}$
 
 type AllCombinations<A extends string, B extends string = A> = A extends A ? Combinations<A, AllCombinations<Exclude<B, A>>> : never;
 
-const c:AllCombinations<'a'|'b'|'c'> = 'abc'
+const c: AllCombinations<"a" | "b" | "c"> = "abc";

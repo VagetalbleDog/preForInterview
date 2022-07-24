@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@babel/core": "^7.18.9",
+    "fs": "^0.0.1-security"
+  }
+}
