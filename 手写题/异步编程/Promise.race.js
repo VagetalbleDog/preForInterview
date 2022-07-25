@@ -1,11 +1,11 @@
 //想想promise.race（）的作用是啥，接受一个可迭代对象作为参数，一般是数组,里边的三个promise竞速，谁先改变状态，race函数就改变谁的状态
-function promiseRace(promises) {
-  if (!promises[Symbol.iterator]) {
-    throw new TypeError('arguments need to be iterable')
+function promiseRace(promises){
+  if(!promises[Symbol.iterator]){
+    throw new TypeError(`${promises}不可迭代`)
   }
-  return new Promise((resolve, reject) => {
-    for (let i = 0; i < promises.length; i++) {
-      promises[i].then(resolve, reject)
+  return new Promise((resolve,reject)=>{
+    for(let promise of promises){
+      promise.then(resolve,reject)
     }
   })
 }
@@ -19,7 +19,7 @@ let p1 = new Promise((resolve, reject) => {
 let p2 = new Promise((resolve, reject) => {
   setTimeout(() => {
     reject(2)
-  }, 2000)
+  }, 1000)
 })
 let p3 = new Promise((resolve, reject) => {
   setTimeout(() => {

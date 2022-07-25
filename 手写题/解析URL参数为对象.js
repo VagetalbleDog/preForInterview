@@ -15,3 +15,13 @@ function UrlParamsToObj(url) {
   return newObj
 }
 console.log(UrlParamsToObj(url))
+
+const parseUrl = (query)=>{
+  const newObj = {}
+  const queryArr = query.split('&');
+  for(const query of queryArr){
+    const [key,value] = query.split('=');
+    newObj[key] = value
+  }
+  return newObj
+}

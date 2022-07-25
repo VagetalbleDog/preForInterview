@@ -16,6 +16,7 @@ function promisify(fn) {
     })
   }
 }
+
 const fs = require('fs')
 let readFileAsync = promisify(fs.readFile)
 readFileAsync('./TEST.js').then(
