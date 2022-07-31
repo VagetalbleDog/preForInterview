@@ -34,6 +34,8 @@ CSS3的transition支持visibility属性，但是并不支持display，由于tran
 
 # 7. script中的 defer 和 async 有什么区别。
 
+[为什么外链css要放在头部，js要放在尾部？ - 掘金 (juejin.cn)](https://juejin.cn/post/6844904009694707725#heading-0)
+
 # 8. HTML5新增了哪些
 
 # 9. cavans 和 svg的区别
