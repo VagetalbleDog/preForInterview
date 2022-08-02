@@ -45,7 +45,23 @@
 
 # 20. 原型 和 原型链
 
+直接看这个文章：https://juejin.cn/post/6934498361475072014#heading-7。
+
+记住那张图就行
+
+![image-20220802162347825](C:\Users\fujiaxu\AppData\Roaming\Typora\typora-user-images\image-20220802162347825.png)
+
 # 21. DOM解析对象时的回调事件
 
 # 22. 事件流、事件委托
+
+# 23. call、apply 和 bind的区别
+
+# 24. 箭头函数和普通函数的区别
+
+# 25. this的指向问题
+
+# 26. 深拷贝和浅拷贝
+
+# 27. [] !== []
 
