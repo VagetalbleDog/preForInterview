@@ -1,11 +1,17 @@
-function shuffle(arr = []) {
-    for (let i = arr.length - 1; i >= 0; i--) {
-        let rIndex = Math.floor(Math.random() * i);
-        let t = arr[i];
-        arr[i] = arr[rIndex];
-        arr[rIndex] = t;
-    }
+function Parent(name) {
+    this.name = name;
+    this.colors = ["red", "blue", "green"];
 }
-let arr = [1, 2, 3, 4, 5, 6, 7];
-shuffle(arr);
-console.log(arr);
+Parent.prototype.getName = function () {
+    console.log(this.name);
+};
+function Child(name, age) {
+    Parent.call(this, name);
+    this.age = age;
+}
+// 关键的三步
+var F = function () {};
+F.prototype = Parent.prototype;
+Child.prototype = new F();
+var child1 = new Child("kevin", "18");
+console.log(child1);
