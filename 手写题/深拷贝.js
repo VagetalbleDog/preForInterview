@@ -6,20 +6,26 @@ function deepClone_JsonType(obj) {
 
 //方法2 递归
 const deepCopy = (obj)=>{
-  if(typeof obj!=='object'){
-    return;
-  }
-  const map = new Map();
+  const hash = new Map();
+
   const deep = (obj)=>{
+    if(hash.get(obj)){
+      return hash.get(obj)
+    }
     const newObj = Array.isArray(obj)?[]:{};
-    map.set(obj,newObj)
-    for(const key in obj){
+    hash.set(obj,newObj)
+    for(let key in obj){
       if(obj.hasOwnProperty(key)){
-        newObj[key]=typeof obj[key]==='object'?deep(obj[key]):obj[key]
+        if(typeof obj[key]!=='object'){
+          newObj[key] = obj[key]
+        }else{
+          newObj[key] = deep(obj[key])
+        }
       }
     }
-    return newObj
+    return newObj;
   }
+
   return deep(obj)
 }
 //测试
