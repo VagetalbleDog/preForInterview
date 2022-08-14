@@ -1,0 +1,7 @@
+  - 使用 webpack-dev-server (后面简称 WDS)托管静态资源，同时以 Runtime 方式注入 HMR 客户端代码
+  - 浏览器加载页面后，与 WDS 建立 WebSocket 连接
+  - Webpack 监听到文件变化后，增量构建发生变更的模块，并通过 WebSocket 发送 hash 事件
+  - 浏览器接收到 hash 事件后，请求 manifest 资源文件，确认增量变更范围
+  - 浏览器加载发生变更的增量模块
+  - Webpack 运行时触发变更模块的 module.hot.accept 回调，执行代码变更逻辑
+  - done
