@@ -46,3 +46,9 @@ Fiber 和调用栈帧一样, 保存了节点处理的上下文信息，因为是
 使用最新的 React 版本(v16), 使用 Chrome 的 Performance 工具，可以很清晰地看到每次渲染有两个阶段：`Reconciliation`(协调阶段) 和 `Commit`(提交阶段)。
 
 除了Fiber 工作单元的拆分，两阶段的拆分也是一个非常重要的改造，在此之前都是一边Diff一边提交的。
+
+# 2. diff算法
+
+# 3. react事件机制
+
+# 4. react 各版本的区别

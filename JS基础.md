@@ -8,6 +8,8 @@
 
 # 5. Object.create(null)
 
+创建一个没有原型的对象
+
 # 6. 迭代器
 
 # 7. ES6的模块化
@@ -52,6 +54,8 @@
 ![image-20220802162347825](C:\Users\fujiaxu\AppData\Roaming\Typora\typora-user-images\image-20220802162347825.png)
 
 # 21. DOM解析对象时的回调事件
+
+[深入理解DOM事件类型系列第六篇——加载事件 - 小火柴的蓝色理想 - 博客园 (cnblogs.com)](https://www.cnblogs.com/xiaohuochai/p/6375372.html)
 
 # 22. 事件流、事件委托
 

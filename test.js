@@ -1,37 +1,22 @@
-function vNode(sel, data, children, text, elm) {
-    return { sel, data, children, text, elm }
-  }
-  
-  //形态1：h('div',{},文本内容)
-  //形态2：h('div',{},[])
-  //形态3：h('div',{},h())
-  function h(sel, data, c) {
-    if (arguments.length !== 3) {
-      throw new Error('必须传入三个参数')
+Function.prototype.bind_ = function (contenxt) {
+    if (typeof this !== "function") {
+        throw new Error(
+            "Function.prototype.bind - what is trying to be bound is not callable"
+        );
     }
-    if (typeof c === 'string' || typeof c === 'number') {
-      //形态一
-      return vNode(sel, data, undefined, c, undefined)
-    }
-    //形态二
-    if (Array.isArray(c)) {
-      let children = []
-      for (let i = 0; i < c.length; i++) {
-        if (typeof c[i] !== 'object' || !c[i].hasOwnProperty('sel')) {
-          throw new TypeError()
-        }
-        children.push(c[i])
-      }
-      return vNode(sel, data, children, undefined, undefined)
-    }
-    //形态三
-    if (typeof c === 'object' && c.hasOwnProperty('sel')) {
-      //传入的c就是唯一的children
-      let children = []
-      children.push(c)
-      return vNode(sel, data, children, undefined, undefined)
-    }
-  }
-  
-  console.log(h('div', {}, 'hahahaha'))
-  
+    let fn = this;
+    let args1 = [...arguments].splice(1);
+    // 防止fn的原型被改变
+    let fNOP = function () {};
+    let bound = function () {
+        let args2 = [...arguments];
+        return fn.apply(this instanceof fn ? this : contenxt, [
+            ...args1,
+            ...args2,
+        ]);
+    };
+    // 这里需要注意下
+    fNOP.prototype = fn.prototype;
+    bound.prototype = new fNOP();
+    return bound;
+};

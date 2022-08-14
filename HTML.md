@@ -30,6 +30,8 @@ CSS3的transition支持visibility属性，但是并不支持display，由于tran
 
 # 5. 手机端布局的方法
 
+rem + 媒体查询
+
 # 6. meta 标签
 
 # 7. script中的 defer 和 async 有什么区别。
