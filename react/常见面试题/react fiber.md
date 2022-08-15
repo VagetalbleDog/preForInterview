@@ -32,5 +32,25 @@ react fiber使得diff阶段有了被保存工作进度的能力，这部分会�
 
 react fiber是通过requestIdleCallback这个api去控制组件渲染的进度条。
 
-requestIdleCallback是一个属于宏任务的回调，就像setTimeout一样。不同的是，setTimeout的执行时机由我们传入的回调时间去控制，requestIdleCallback是受屏幕的刷新率去控制。本文不对这部分做深入探讨，只需要知道它每隔16ms会被调用一次，它的回调函数可以获取本次可以执行的时间，每一个16ms除了requestIdleCallback的回调之外，还有其他工作，所以能使用的时间是不确定的，但只要时间到了，就会停下节点的遍历。
+requestIdleCallback是一个属于宏任务的回调，就像setTimeout一样。不同的是，setTimeout的执行时机由我们传入的回调时间去控制，requestIdleCallback是受屏幕的刷新率去控制。只需要知道它每隔16ms会被调用一次，它的回调函数可以获取本次可以执行的时间，每一个16ms除了requestIdleCallback的回调之外，还有其他工作，所以能使用的时间是不确定的，但只要时间到了，就会停下节点的遍历。
+
+## fiber如何让出控制权
+
+**关于requestIdleCallback**
+接受一个callback，这个callback会接受一个由浏览器高速你的执行剩余时间的参数 IdleDeadline。
+通过下列代码获取每一帧，浏览器的渲染之后的剩余时间。
+```js
+    window.requestIdleCallback((idleDeadLine)=>{
+        //可以放一些我们想做的事情，比如说fiber节点的调和
+      console.log(idleDeadLine.timeRemaining())
+    })
+```
+而实际上，浏览器会最多给出50ms的空闲时间给我们处理想做的事情，比如我们做的事情非常耗时，浏览器知道我们耗时，但为了页面呈现尽量不要太卡顿，同时又要照顾js线程，浏览器会主动将一帧的用时从16.66ms提升到50ms，也就是1s20帧。
+
+## react中的fiber是如何运转的
+
+### 调和（Reconciliation）
+这个阶段做的时间很多，fiber的创建、diff对比等，都在这个阶段，在对比完成后可以下次提交，这个阶段可以被暂停。
+### 提交（commit）
+将协调阶段计算出来的变更一次性提交，不可中断。
 
