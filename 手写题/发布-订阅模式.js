@@ -1,40 +1,34 @@
-class EventCenter {
-  //定义事件容器，用来装事件数组
-  constructor() {
-    this.handlers = {}
+class EventCenter{
+  constructor(){
+    this.events = new Map();
   }
-
-  addEventListener(type, handler) {
-    if (!this.handlers[type]) {
-      this.handlers[type] = []
+  addEventLister(type,fn){
+    //如果没有该事件就初始化一个fn列表
+    if(!this.events.has(type)){
+      this.events.set(type,[])
     }
-    //存入事件
-    this.handlers[type].push(handler)
+    this.events.get(type).push(fn)
   }
-
-  dispatchEvent(type, params) {
-    if (!this.handlers[type]) {
-      return new Error('该事件未注册')
+  emit(type){
+    if(!this.events.has(type)){
+      console.log('没有这个事件')
+      return;
     }
-    this.handlers[type].forEach((handler) => {
-      handler(...params)
-    })
+    for(const fn of this.events.get(type)){
+      fn();
+    }
   }
-
-  removeEvent(type, handler) {
-    if (!this.handlers[type]) {
-      throw new TypeError('该事件未注册')
+  removeEvent(type,fn){
+    if (!this.events.has(type)) {
+      console.log("没有这个事件");
+      return;
     }
-    if (!handler) {
-      delete this.handlers[type]
-    } else {
-      let index = this.handlers[type].findIndex((val) => {
-        return val === handler
-      })
-      this.handlers[type].splice(index, 1)
-      if (this.handlers[type].length === 0) {
-        delete this.handlers[type]
-      }
-    }
+    const index = this.events.get(type).indexOf(cb=>fn===cb);
+    this.events.get(type).splice(index,1)
   }
 }
+let eventCenter = new EventCenter();
+eventCenter.addEventLister('hello',()=>{console.log('hello emit')})
+eventCenter.addEventLister('hello',()=>{console.log('hello emit2')})
+
+eventCenter.emit('hello')

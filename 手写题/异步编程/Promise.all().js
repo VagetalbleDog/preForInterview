@@ -13,11 +13,11 @@ const promiseAll = (promises) => {
         .then((resolved) => {
           resolvedArr.push(resolved);
           if (promiseLength === resolvedArr.length) {
-            resolve(resolvedArr);
+            return resolve(resolvedArr);
           }
         })
         .catch((reason) => {
-          reject(reason);
+          return reject(reason);
         });
     }
   });
@@ -30,7 +30,7 @@ let p1 = new Promise((resolve, reject) => {
 });
 let p2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(2);
+    resolve(2);
   }, 2000);
 });
 let p3 = new Promise((resolve, reject) => {
