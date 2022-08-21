@@ -93,7 +93,7 @@ const HOC = (WrapComponent) =>
 dva 中 dynamic 就是配合 import ，实现组件的动态加载的，而且每次切换路由，都会有 Loading 效果，接下来看看大致的实现思路。
 
 编写
-```
+```jsx
 export default function dynamicHoc(loadRouter) {
   return class Content extends React.Component {
     state = {Component: null}
@@ -115,7 +115,7 @@ export default function dynamicHoc(loadRouter) {
 }
 ```
 使用
-```
+```jsx
 const Index = AsyncRouter(()=>import('../pages/index'))
 ```
 实现思路：

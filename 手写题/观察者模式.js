@@ -1,29 +1,29 @@
 class Subject{
-    constructor(name='zwf'){
-        this.state = 100;
+    constructor(name){
         this.name = name;
-        this.observers = []//多个观察者
+        this.observers = [];
+        this.state = 100
     }
     addObserver(observer){
         this.observers.push(observer)
     }
-    alterNateState(state){
-        this.state = state;
-        this.observers.forEach((ob)=>{
-            ob.update(this)
-        })
+    alterNateState(alterNateState){
+        this.state = alterNateState;
+        for(const observer of this.observers){
+            observer.received(this)
+        }
     }
 }
 
 class Observer{
     constructor(name){
         this.name = name;
+        this.Subjects = [];
     }
-    update(subject){
-        console.log(`收到通知，${subject.name} 的 吊瓶 还剩 ${subject.state}`)
+    received(sub){
+        console.log(`观察到${sub.name}的状态变化为${sub.state}`)
     }
 }
-
 let patient = new Subject('1');
 let patient2 = new Subject('2');
 let doctor = new Observer('doc')
