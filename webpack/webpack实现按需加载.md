@@ -5,7 +5,7 @@
 
 # 按需加载和react-router
 
-```js
+```jsx
 /**
  * 
  * @param  load，组件加载函数，需要返回一个promise，在组件加载完成时resolve
