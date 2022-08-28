@@ -6,7 +6,7 @@
 
 flex布局分为：flex容器 和 flex项目
 
-![image-20220731162112742](C:\Users\fujiaxu\AppData\Roaming\Typora\typora-user-images\image-20220731162112742.png)
+![image-20220731162112742](D:\秋招\共同复习\preForInterview\CSS.assets\image-20220731162112742.png)
 
 开启flex
 
@@ -16,19 +16,19 @@ div {
 }
 ```
 
-![image-20220731165101156](C:\Users\fujiaxu\AppData\Roaming\Typora\typora-user-images\image-20220731165101156.png)
+![image-20220731165101156](D:\秋招\共同复习\preForInterview\CSS.assets\image-20220731165101156.png)
 
 ![image-20220731165248420](C:\Users\fujiaxu\AppData\Roaming\Typora\typora-user-images\image-20220731165248420.png)
 
 `flex-basis`属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为`auto`，即项目的本来大小。
 
-![image-20220731165443412](C:\Users\fujiaxu\AppData\Roaming\Typora\typora-user-images\image-20220731165443412.png)
+![image-20220731165443412](D:\秋招\共同复习\preForInterview\CSS.assets\image-20220731165443412.png)
 
 其中常问道的是：flex:1 和 flex: 0 的区别。
 
 [一文搞懂flex:0,1,auto,none - 掘金 (juejin.cn)](https://juejin.cn/post/7061196914741477383)
 
-![image-20220731165959366](C:\Users\fujiaxu\AppData\Roaming\Typora\typora-user-images\image-20220731165959366.png)
+![image-20220731165959366](D:\秋招\共同复习\preForInterview\CSS.assets\image-20220731165959366.png)
 
 # 2. 移动端布局的方式
 
