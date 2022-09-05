@@ -1,4 +1,4 @@
-本章节不涉及通过memo、useMemo、useCallback等 对组件渲染进行控制，而是主要讲懒加载、异步加载等渲染方式。
+不涉及通过memo、useMemo、useCallback等 对组件渲染进行控制，而是主要讲懒加载、异步加载等渲染方式。
 
 # 懒加载和异步渲染
 
