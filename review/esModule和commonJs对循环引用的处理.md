@@ -55,7 +55,7 @@
 
 执行过程：
 
-1、运行a.js，进入b.js，这时候b.js又require a.js，但是这是a.js已经加载过，commonJs的底层会把它处理成一个空对象，相当与把 `var message=require('./a.js').message;` 处理成 `var message = {}.message` 也就是说此时的message是undefined
+1、运行a.js，进入b.js，这时候b.js又require a.js，但是这是a.js已经加载过，commonJs的底层会把它处理成一个缓存，此时是一个空对象，相当与把 `var message=require('./a.js').message;` 处理成 `var message = {}.message` 也就是说此时的message是undefined
 
 2、b.js导出 count=5，存一个宏任务之后，回到a.js
 
